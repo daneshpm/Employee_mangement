@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
+
 
 
 @RestController
@@ -28,7 +30,7 @@ public class EmployeeController {
 
     // CREATE
     @PostMapping
-    public Employee addEmployee(@RequestBody Employee e) {
+    public Employee addEmployee(@Valid @RequestBody Employee e) {
         return service.addemployee(e);
     }
     
@@ -51,7 +53,7 @@ public class EmployeeController {
 
     // UPDATE
     @PutMapping("/{id}")
-    public Employee updateEmployee(@PathVariable Integer id, @RequestBody Employee e) {
+    public Employee updateEmployee(@PathVariable Integer id,@Valid @RequestBody Employee e) {
         return service.updateEmployee(id, e);
     }
 

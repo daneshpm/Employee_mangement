@@ -1,11 +1,13 @@
 package com.example.employee;
 
 
+
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotBlank; 
+import jakarta.validation.constraints.*; 
 
 @Entity
 public class Employee {
@@ -16,8 +18,12 @@ private Integer id;
 
 @NotBlank(message = "Name cannot be empty")
 private String name;
+@NotNull(message="salary cannot be empty")
+@Positive(message="salary cannot be negative")
 private Double salary;
+@NotNull(message="mobile no required")
 private Long mobile;
+@Email(message="Invalid email address")
 private String email;
 
 public Employee() {}
