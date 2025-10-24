@@ -20,7 +20,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/employees")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:3000")
 public class EmployeeController {
 	private final EmployeeService service;
 
@@ -69,7 +69,7 @@ public class EmployeeController {
     	double avg=all.stream().mapToDouble(e->e.getSalary()==null?0:e.getSalary()).average().orElse(0);
     	double max=all.stream().mapToDouble(e->e.getSalary()==null?0:e.getSalary()).max().orElse(0);
     	double min=all.stream().mapToDouble(e->e.getSalary()==null?0:e.getSalary()).min().orElse(0);
-    	return Map.of("averge",avg,"maximum",max,"minimum",min);
+    	return Map.of("average",avg,"maximum",max,"minimum",min);
     }
     
     
