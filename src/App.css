@@ -40,6 +40,84 @@ body {
 .card:hover {
   transform: scale(1.05);
 }
+.table {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f0f8ff !important;
+  transform: scale(1.01);
+  transition: all 0.2s ease-in-out;
+}
+
+.table thead {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+}
+
+.btn-outline-warning:hover {
+  background-color: #ffc107;
+  color: white;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.badge {
+  font-size: 0.85rem;
+  padding: 0.4em 0.6em;
+}
+
+.nav-link {
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.active-nav {
+  background-color: #007bff;
+  font-weight: bold;
+}
+body {
+  background: linear-gradient(135deg, #f7faff, #e6f0ff);
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+}
+
+.card {
+  border-radius: 18px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+h3, h4, h5 {
+  letter-spacing: 0.5px;
+}
+
+canvas {
+  max-height: 400px;
+}
+
+.card {
+  border-radius: 18px;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
 
 
 @keyframes App-logo-spin {
