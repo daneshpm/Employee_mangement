@@ -1,9 +1,12 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FaHome, FaPlus, FaChartPie, FaUsers } from "react-icons/fa";
+import { FaHome, FaPlus, FaChartPie, FaUsers, FaUserShield } from "react-icons/fa";
+import AuthService from "../Services/AuthService";
 
 const Sidebar = () => {
   const location = useLocation();
+  const currentUser = AuthService.getCurrentUser();
+  const isAdmin = currentUser?.roles?.includes("ROLE_ADMIN");
 
   const navItems = [
     { path: "/", label: "Dashboard", icon: <FaHome /> },
@@ -11,6 +14,10 @@ const Sidebar = () => {
     { path: "/employees", label: "Employees", icon: <FaUsers /> },
     { path: "/analytics", label: "Analytics", icon: <FaChartPie /> },
   ];
+
+  if (isAdmin) {
+    navItems.push({ path: "/admin", label: "Admin Panel", icon: <FaUserShield /> });
+  }
 
   return (
     <div

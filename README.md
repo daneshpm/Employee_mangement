@@ -1,70 +1,141 @@
-# Getting Started with Create React App
+# Employee Management System with JWT Authentication
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack employee management application built with React frontend and Spring Boot backend, featuring JWT-based authentication and role-based access control.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **JWT Authentication**: Secure login/logout with token-based authentication
+- **Role-based Access Control**: Admin and User roles with different permissions
+- **Employee Management**: CRUD operations for employee data
+- **Dashboard & Analytics**: Visual representation of employee data
+- **Responsive Design**: Bootstrap-based responsive UI
+- **Protected Routes**: Frontend route protection based on authentication status
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Backend
+- Spring Boot 3.3.2
+- Spring Security with JWT
+- Spring Data JPA
+- MySQL Database
+- Maven
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Frontend
+- React 19.2.0
+- React Router DOM
+- Axios for API calls
+- Bootstrap 5 for styling
+- React Icons
 
-### `npm test`
+## Setup Instructions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
+- Java 17+
+- Node.js 16+
+- MySQL 8+
+- Maven 3.6+
 
-### `npm run build`
+### Backend Setup
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Database Configuration**
+   - Create a MySQL database named `employees_db`
+   - Copy `.env.example` to `.env` and update with your database credentials:
+     ```bash
+     cp .env.example .env
+     ```
+   - Update the `.env` file with your MySQL credentials:
+     ```
+     DB_USERNAME=root
+     DB_PASSWORD=your_mysql_password
+     JWT_SECRET=your_secure_jwt_secret_key
+     ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. **Run the Backend**
+   ```bash
+   # Using Maven wrapper (recommended)
+   ./mvnw spring-boot:run
+   
+   # Or if you have Maven installed
+   mvn spring-boot:run
+   ```
+   The backend will start on `http://localhost:8080`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Frontend Setup
 
-### `npm run eject`
+1. **Install Dependencies**
+   ```bash
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. **Start the Frontend**
+   ```bash
+   npm start
+   ```
+   The frontend will start on `http://localhost:3000`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Authentication
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Default Users
+After starting the application, you can register new users or create them directly in the database.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### API Endpoints
 
-## Learn More
+#### Authentication
+- `POST /api/auth/signin` - User login
+- `POST /api/auth/signup` - User registration
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Employee Management (Protected)
+- `GET /api/employees` - Get all employees
+- `POST /api/employees` - Create employee
+- `PUT /api/employees/{id}` - Update employee
+- `DELETE /api/employees/{id}` - Delete employee
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Test Endpoints
+- `GET /api/test/all` - Public access
+- `GET /api/test/user` - User role required
+- `GET /api/test/admin` - Admin role required
 
-### Code Splitting
+## Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. **Registration**: Create a new account at `/register`
+2. **Login**: Sign in at `/login`
+3. **Dashboard**: View employee statistics and charts
+4. **Employee Management**: Add, edit, and delete employees
+5. **Analytics**: View detailed employee analytics
+6. **Admin Panel**: Access admin features (admin role required)
 
-### Analyzing the Bundle Size
+## Security Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- JWT tokens with configurable expiration
+- Password encryption using BCrypt
+- CORS configuration for cross-origin requests
+- Automatic token refresh handling
+- Protected routes on both frontend and backend
+- Role-based access control
 
-### Making a Progressive Web App
+## Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+├── src/main/java/com/example/employee/    # Backend Java files
+│   ├── User.java                          # User entity
+│   ├── AuthController.java                # Authentication endpoints
+│   ├── JwtUtils.java                      # JWT utility functions
+│   └── WebSecurityConfig.java             # Security configuration
+├── src/                                   # Frontend React files
+│   ├── components/                        # React components
+│   │   ├── Login.js                       # Login component
+│   │   ├── Register.js                    # Registration component
+│   │   └── ProtectedRoute.js              # Route protection
+│   └── Services/                          # API services
+│       ├── AuthService.js                 # Authentication service
+│       └── AxiosInterceptor.js            # HTTP interceptor
+└── pom.xml                                # Maven dependencies
+```
 
-### Advanced Configuration
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request

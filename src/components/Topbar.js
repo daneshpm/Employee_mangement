@@ -1,7 +1,18 @@
 import React from "react";
-import { FaBell, FaUserCircle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { FaBell, FaUserCircle, FaSignOutAlt } from "react-icons/fa";
+import AuthService from "../Services/AuthService";
 
 const Topbar = () => {
+  const navigate = useNavigate();
+  const currentUser = AuthService.getCurrentUser();
+
+  const handleLogout = () => {
+    AuthService.logout();
+    navigate("/login");
+    window.location.reload();
+  };
+
   return (
     <nav
       className="navbar navbar-light bg-white shadow-sm px-4"
@@ -12,9 +23,17 @@ const Topbar = () => {
       }}
     >
       <h5 className="fw-bold text-primary">Employee Management Dashboard</h5>
-      <div>
+      <div className="d-flex align-items-center">
+        <span className="me-3 text-muted">Welcome, {currentUser?.username}</span>
         <FaBell className="me-3 text-secondary" size={20} />
-        <FaUserCircle className="text-primary" size={28} />
+        <FaUserCircle className="me-3 text-primary" size={28} />
+        <button 
+          className="btn btn-outline-danger btn-sm"
+          onClick={handleLogout}
+          title="Logout"
+        >
+          <FaSignOutAlt />
+        </button>
       </div>
     </nav>
   );
